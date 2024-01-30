@@ -9,19 +9,23 @@ server.on('request', (req, res) => {
     // });
 
     //solution 2: streams - apenas cria um fluxo legievel
-    const readable =  fs.createReadStream('test-file.txt') 
-    readable.on('data', chunk =>{
-        res.write(chunk);
-    });
-    readable.on('end', () =>{
-        res.end();
-    });
-    readable.on('error', err =>{
-        console.log(err);
-        res.statusCode = 500;
-        res.end('File not found!');
+    // const readable =  fs.createReadStream('test-file.txt') 
+    // readable.on('data', chunk =>{
+    //     res.write(chunk);
+    // });
+    // readable.on('end', () =>{
+    //     res.end();
+    // });
+    // readable.on('error', err =>{
+    //     console.log(err);
+    //     res.statusCode = 500;
+    //     res.end('File not found!');
 
-    });
+    // });
+    //solution 3:
+    const readable =  fs.createReadStream('test-file.txt');
+    readable.pipe(res) 
+    // readableSouce.pipe(writeableDest)
 
 });
 server.listen(8000, '127.0.0.1', () => {
