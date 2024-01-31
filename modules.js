@@ -12,3 +12,6 @@ console.log(add(3,6));
 
 
 //caching
+require('./test-module-3')();
+require('./test-module-3')();
+require('./test-module-3')();
